@@ -1,0 +1,1077 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --primary-color: #6a38c2;
+  --primary-color-dark: #6132b4;
+  --text-dark: #262626;
+  --text-light: #737373;
+  --extra-light: #e5e5e5;
+  --white: #ffffff;
+  --max-width: 1200px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* body section */
+body {
+    font-family: "Poppins", sans-serif;
+  }
+  html,body {
+  scroll-behavior: smooth;
+}
+
+
+/*navigation bar*/
+
+
+nav {
+    position: fixed;
+    isolation: isolate;
+    width: 100%;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    z-index: 9;
+  }
+
+  .nav__header {
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--extra-light);
+  }
+  
+  .nav_menu_btn {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    cursor: pointer;
+  }
+  
+  .nav__links {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: var(--extra-light);
+    transition: 0.5s;
+    z-index: -1;
+    transform: translateY(-100%);
+  }
+  
+  .nav__links.open {
+    transform: translateY(0);
+  }
+  
+  .nav__links a {
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+  
+  .nav__links a:hover {
+    color: var(--primary-color);
+  }
+  .btn {
+    padding: 1rem 2rem;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: var(--primary-color-dark);
+    box-shadow: 2px 2px 10px rgba(106, 56, 194, 0.5);
+  }
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+
+  
+  }
+  
+  .logo span {
+    color: #fa6021;
+  }
+
+  
+a {
+    text-decoration: none;
+    transition: 0.3s;
+  
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+
+  /*navigation bar ends here*/
+
+  /*Section Container*/
+.section_container {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 5rem 1rem;
+}
+
+.section__header {
+  max-width: 900px;
+  margin-inline: auto;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+}
+
+.section__header span {
+  color: var(--primary-color);
+}
+
+.section__description {
+  max-width: 600px;
+  margin-inline: auto;
+  color: var(--text-light);
+  line-height: 1.75rem;
+  text-align: center;
+}
+
+.header__container {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  
+  .header__container h2 {
+    max-width: fit-content;
+    margin-inline: auto;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fa6021;
+    background-color: #fff8f5;
+    border-radius: 5rem;
+  }
+  
+  .header__container h2 img {
+    max-width: 25px;
+  }
+  
+  .header__container h1 {
+    margin-bottom: 1rem;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+    line-height: 5.5rem;
+  }
+  
+  .header__container h1 span {
+    color: var(--primary-color);
+  }
+  
+  .header__container p {
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-inline: auto;
+    color: var(--text-light);
+    line-height: 2rem;
+    text-align: center;
+  }
+
+  img {
+    display: flex;
+    width: 100%;
+  }
+  
+
+ /*Section Container ends here*/
+
+
+
+/* Search Bar */
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 500px;
+  border-radius: 15px 0 0 15px;
+  border: 1px solid #ddd;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar button {
+  padding: 10px;
+  background-color: #6a0dad;
+  color: #fff;
+  border: none;
+  border-radius: 0 15px 15px 0;
+}
+
+.suggestions-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  width: 200px;
+}
+
+.suggestions-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions-list li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Search Bar ends here*/
+
+/*carousel section*/
+.maintain-arrowpos{
+    position: relative;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-68%);
+    /* background-color: rgba(14, 47, 234, 0.798); */
+    background-color: white;
+    border: none;
+    color: rgb(246, 12, 12);
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+    height: 10%;
+    text-align: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.left-arrow {
+    left: 390px; /* 10px outside the .carousel container */
+    
+}
+.carousel {
+    position: relative;
+    width: 650px; /* Adjust the width based on how many items you want visible */
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 200px; 
+    margin-right: 10px;
+    list-style: none;
+    padding: 20px;
+    background-color: #f5efef70;
+    border: 1px solid #ccc;
+    text-align: center;
+    border-radius: 50px;
+}
+
+.right-arrow {
+    right: 390px; /* 10px outside the .carousel container */
+}
+
+/*carousel section ends here*/
+
+
+/* 4 quick easy steps*/
+/* Container for the steps grid */
+.steps__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Space between cards */
+  padding: 20px;
+  max-width: 1200px; /* Max width of the grid */
+  margin: auto; /* Center the grid */
+  margin-top: 4rem; /* Top margin for spacing */
+}
+
+/* Background and layout for the steps section */
+.steps {
+  background-image: url('./assets/images/steps-bg.jpg'); 
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Section container styling */
+.section_container {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 5rem 1rem;
+}
+
+/* Section header styling */
+.section__header {
+  max-width: 900px;
+  margin-inline: auto;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+}
+
+.section__header span {
+  color: var(--primary-color);
+}
+
+/* Section description styling */
+.section__description {
+  max-width: 600px;
+  margin-inline: auto;
+  color: var(--text-light);
+  line-height: 1.75rem;
+  text-align: center;
+}
+
+/* Individual step card styling */
+.steps__card {
+  background-color: #f9f9f9; /* Default card background */
+  border-radius: 30px; /* Rounded corners */
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 20px; /* Inner padding */
+  text-align: center; /* Center text */
+  transition: transform 0.3s, box-shadow 0.3s; /* Animation on hover */
+}
+
+/* Icon styling */
+.steps__card span {
+  display: inline-block;
+  margin-bottom: 1rem; /* Space between icon and title */
+  padding: 5px 11px; /* Padding around icon */
+  font-size: 1.5rem; /* Larger icon */
+  border-radius: 20px; /* Rounded background for icons */
+}
+
+/* Specific icon styles for each card */
+.steps__card:nth-child(1) span {
+  color: #fa4e09; /* Color for the first icon */
+  background-color: #fff9f6; /* Background for the first icon */
+}
+
+.steps__card:nth-child(2) span {
+  color: #6a38c2; /* Color for the second icon */
+  background-color: #e9ddff; /* Background for the second icon */
+}
+
+.steps__card:nth-child(3) span {
+  color: #3ac2ba; /* Color for the third icon */
+  background-color: #f0fffe; /* Background for the third icon */
+}
+
+.steps__card:nth-child(4) span {
+  color: #fbbc09; /* Color for the fourth icon */
+  background-color: #fff8e3; /* Background for the fourth icon */
+}
+
+/* Card title styling */
+.steps__card h4 {
+  margin: 10px 0 0.5rem; /* Space above and below title */
+  font-size: 1.2rem; /* Title size */
+  font-weight: 700; /* Font weight */
+  color: var(--text-dark); /* Title color */
+}
+
+/* Paragraph text styling */
+.steps__card p {
+  font-size: 0.95em; /* Paragraph size */
+  color: var(--text-light); /* Paragraph color */
+}
+
+/* Hover effect for cards */
+.steps__card:hover {
+  transform: translateY(-5px); /* Move card up slightly */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Increase shadow on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .steps__card {
+      padding: 15px; /* Smaller padding on small screens */
+  }
+
+  .steps__card h4 {
+      font-size: 1.1em; /* Smaller title size */
+  }
+
+  .steps__card p {
+      font-size: 0.9em; /* Smaller paragraph size */
+  }
+}
+
+/*4 quick easy steps end here*/
+
+/*Countless career options*/
+.section_container {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 5rem 1rem;
+  }
+
+  .section__header {
+    max-width: 900px;
+    margin-inline: auto;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  
+  .section__header span {
+    color: var(--primary-color);
+  }
+  
+  .section__description {
+    max-width: 600px;
+    margin-inline: auto;
+    color: var(--text-light);
+    line-height: 1.75rem;
+    text-align: center;
+  }
+  
+.explore__grid {
+  margin-block: 4rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.explore__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    justify-items: center;
+}
+
+.explore__card {
+  padding: 1rem;
+  border-radius: 50px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.explore__card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.explore__card span {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 5px 11px;
+    font-size: 1.5rem;
+    border-radius: 30px;
+    transition: 0.3s;
+  }
+
+  
+.explore__card h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    transition: 0.3s;
+  }
+  
+  .explore__card h4 {
+    font-size: 1.25rem;
+    margin: 15px 0;
+}
+
+  .explore__card p {
+    color: var(--text-light);
+    transition: 0.3s;
+  }
+
+.explore__card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.explore__card:hover {
+  background-color: var(--primary-color);
+}
+
+.explore__card:hover {
+    transform: translateY(-10px);
+}
+
+
+
+.explore__card:nth-child(1) span {
+  color: #f04a0c;
+  background-color: #f6efef;
+}
+
+.explore__card:nth-child(2) span {
+  color: #6a38c2;
+  background-color: #e9ddff;
+}
+
+.explore__card:nth-child(3) span {
+  color: #ff0101;
+  background-color: #fff2f2;
+}
+
+.explore__card:nth-child(4) span {
+  color: #fbbc09;
+  background-color: #fff8e3;
+}
+
+.explore__card:nth-child(5) span {
+  color: #4680e7;
+  background-color: #e7edf8;
+}
+
+.explore__card:nth-child(6) span {
+  color: #34a753;
+  background-color: #f1fef5;
+}
+
+.explore__card:nth-child(7) span {
+  color: #443ee0;
+  background-color: #f6f5ff;
+}
+
+.explore__card:nth-child(8) span {
+  color: #3ac2ba;
+  background-color: #f0fffe;
+}
+
+.explore__card:hover span {
+  color: var(--white);
+  background-color: #794cc7;
+}
+
+.explore__card:hover h4 {
+  color: var(--white);
+}
+
+.explore__card:hover p {
+  color: var(--extra-light);
+}
+.hidden {
+    display: none;
+}
+
+.explore__btn {
+  text-align: center;
+}
+
+.explore__btn .btn {
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.explore__btn .btn:hover {
+    background-color: #e65a00;
+}
+
+.explore__card_block {
+    display: inline-block;
+    width: 100%;
+    margin: 15px;
+}
+
+
+/* Countless career options ends here */
+
+
+/* Latest & Top openings */
+
+.section_container {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 5rem 1rem;
+  }
+
+  .section__header {
+    max-width: 900px;
+    margin-inline: auto;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  
+  .section__header span {
+    color: var(--primary-color);
+  }
+  
+  .section__description {
+    max-width: 600px;
+    margin-inline: auto;
+    color: var(--text-light);
+    line-height: 1.75rem;
+    text-align: center;
+  }
+
+.job__grid {
+  margin-top: 4rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.job__card {
+  padding: 1rem;
+  border-radius: 40px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.job__card:hover {
+  background-color: var(--primary-color);
+}
+
+.job_card_header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+.job__card img {
+  max-width: 50px;
+  padding: 10px;
+  border-radius: 100%;
+  background-color: var(--white);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.job__card h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  transition: 0.3s;
+}
+
+.job__card h6 {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-light);
+  transition: 0.3s;
+}
+
+.job__card h4 {
+  margin-block: 1rem 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  transition: 0.3s;
+}
+
+.job__card p {
+  margin-bottom: 1rem;
+  color: var(--text-light);
+  transition: 0.3s;
+}
+
+.job_card_footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.job_card_footer span {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.job_card_footer span:nth-child(1) {
+  color: #4680e7;
+  background-color: #e7edf8;
+}
+
+.job_card_footer span:nth-child(2) {
+  color: #f04a0c;
+  background-color: #f6efef;
+}
+
+.job_card_footer span:nth-child(3) {
+  color: #3ac2ba;
+  background-color: #f0fffe;
+}
+
+.job__card:hover :is(h5, h4) {
+  color: var(--white);
+}
+
+.job__card:hover :is(h6, p) {
+  color: var(--extra-light);
+}
+
+.job_card:hover .jobcard_footer span {
+  color: var(--white);
+  background-color: var(--primary-color-dark);
+}
+
+/* Latest & Top openings ends here */
+
+/* what we offer */
+
+.section_container {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 5rem 1rem;
+  }
+
+  .section__header {
+    max-width: 900px;
+    margin-inline: auto;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  
+  .section__header span {
+    color: var(--primary-color);
+  }
+  
+  .section__description {
+    max-width: 600px;
+    margin-inline: auto;
+    color: var(--text-light);
+    line-height: 1.75rem;
+    text-align: center;
+  }
+
+.offer__grid {
+  margin-top: 4rem;
+  display: grid;
+  gap: 2rem 1rem;
+}
+
+.offer__card img {
+  margin-bottom: 1rem;
+  border-radius: 30px;
+}
+
+.offer__details {
+  display: flex;
+  align-items: flex-start;
+}
+
+.offer__details span {
+  font-size: 2rem;
+  font-weight: 800;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px var(--text-dark);
+  padding-right: 1rem;
+}
+
+.offer__details div {
+  padding-left: 1rem;
+  border-left: 2px solid var(--primary-color);
+}
+
+.offer__details h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.offer__details p {
+  color: var(--text-light);
+}
+
+/* what we offer ends here*/
+
+/*what our client says*/
+
+.section_container {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 5rem 1rem;
+  }
+
+  .section__header {
+    max-width: 900px;
+    margin-inline: auto;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  
+  .section__header span {
+    color: var(--primary-color);
+  }
+  
+  .section__description {
+    max-width: 600px;
+    margin-inline: auto;
+    color: var(--text-light);
+    line-height: 1.75rem;
+    text-align: center;
+  }
+
+.swiper {
+  padding-top: 4rem;
+  width: 100%;
+  max-width: 600px;
+}
+.client__card img {
+  max-width: 80px;
+  margin-inline: auto;
+  margin-bottom: 2rem;
+  border-radius: 100%;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.client__card p {
+  margin-bottom: 1rem;
+  line-height: 1.75rem;
+  color: var(--text-dark);
+  text-align: center;
+}
+
+.client__card h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  
+  .client__card h5 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-light);
+    text-align: center;
+  }
+
+.client__ratings {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.client__ratings span {
+  color: goldenrod;
+}
+
+/* what our client says ends here */
+
+/*footer section */
+
+.section_container {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 5rem 1rem;
+  }
+
+.footer__container {
+  display: grid;
+  gap: 4rem 2rem;
+}
+
+
+.footer__col p {
+  max-width: 400px;
+  color: var(--text-light);
+}
+
+.footer__col h4 {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.footer__logo {
+    margin-bottom: 2rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+  
+  .logo span {
+    color: #fa6021;
+  }
+
+.footer__links {
+  display: grid;
+  gap: 1rem;
+}
+
+.footer__links a {
+  color: var(--text-light);
+}
+
+.footer__links a:hover {
+  color: var(--primary-color);
+}
+
+.footer__links a span {
+  font-size: 1.25rem;
+}
+
+.footer__bar {
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  text-align: center;
+}
+
+/*footer section ends here*/
+
+/*media queries to handle different screen views*/
+
+@media (width > 540px) {
+  .steps__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .explore__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .job__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .offer__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width > 768px) {
+  nav {
+    position: static;
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .nav__header {
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .nav_menu_btn {
+    display: none;
+  }
+
+  .nav__links {
+    position: static;
+    padding: 0;
+    flex-direction: row;
+    justify-content: flex-end;
+    background-color: transparent;
+    transform: none;
+  }
+
+  .steps__grid {
+    margin-top: 6rem;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .steps__card:nth-child(2n - 1) {
+    transform: translateY(-2rem);
+  }
+
+  .explore__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .job__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .offer__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer__container {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .footer__col:nth-child(1) {
+    grid-column: 1/3;
+  }
+}
+
+@media (width > 1024px) {
+  .steps__card {
+    padding: 1.5rem;
+  }
+
+  .explore__card {
+    padding: 1.5rem;
+  }
+
+  .offer__grid {
+    gap: 2rem;
+  }
+}

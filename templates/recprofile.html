@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Profile</title>
+    <style>
+        /* Primary Colors */
+        :root {
+            --primary-color: #007bff;
+            --primary-color-dark: #0056b3;
+            --extra-light: #e9f0fb;
+            --text-dark: #343a40;
+            --white: #fff;
+            --max-width: 1200px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--extra-light);
+            color: var(--text-dark);
+            padding: 15px 30px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            max-width: var(--max-width);
+            margin-inline: auto;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .navbar-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .navbar-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            background-color: var(--primary-color-dark);
+            color: var(--white);
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: var(--extra-light);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a {
+            color: var(--text-dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--primary-color-dark);
+            color: var(--white);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Main container and content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        h2,
+        h3 {
+            color: var(--text-dark);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            background-color: #f0f0f0;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: var(--primary-color-dark);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">Hire Hub</div>
+        <ul class="navbar-links">
+            <li><a href="/companies">Companies</a></li>
+            <li><a href="/jobs">Jobs</a></li>
+            <li class="dropdown">
+                <a href="#">Profile</a>
+                <div class="dropdown-content">
+                    <a href="#" id="logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Recruiter Details -->
+        <div class="profile-section">
+            <h2>Profile</h2>
+            <div class="profile-details">
+                <p id="recruiter-name">Name: {{data['username']}}</p>
+                <p id="recruiter-email">Email: {{data['email']}}</p>
+                <p id="recruiter-phone">Phone: {{data['number']}}</p>
+            </div>
+            <button id="edit-profile">Edit Profile</button>
+        </div>
+
+       
+
+        <div>
+
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Profile</h2>
+            <form id="edit-profile-form" action="/editform" method="post">
+                <input type="hidden" id="old_name" name="old_name" value="{{data['username']}}">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" value="{{data['username']}}" required><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" value="{{data['email']}}" required><br>
+                <label for="phone">Phone:</label><br>
+                <input type="tel" id="phone" name="phone" value="{{data['number']}}" required><br><br>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hidden status message to be used by JavaScript -->
+    <div id="status-message1" style="display:none">{{ status }}</div>
+
+    <script>
+        // Open the modal when the "edit-profile" button is clicked
+        document.getElementById('edit-profile').addEventListener('click', function () {
+            document.getElementById('myModal').style.display = 'block';
+        });
+
+        // Close the modal when the close button ('.close') is clicked
+        document.querySelector('.close').addEventListener('click', function () {
+            document.getElementById('myModal').style.display = 'none';
+        });
+
+        // Close the modal if the user clicks outside of it
+        window.addEventListener('click', function (event) {
+            if (event.target === document.getElementById('myModal')) {
+                document.getElementById('myModal').style.display = 'none';
+            }
+        });
+
+        // Logout functionality
+        document.getElementById('logout').addEventListener('click', function () {
+            alert("You have been logged out.");
+            window.location.href = '/'; // Redirect to login page (optional)
+        });
+
+        // Load all data on page load
+        window.onload = function () {
+            // Check for the status message and display it as an alert
+            var statusMessage = document.getElementById('status-message').textContent;
+
+            if (statusMessage) {
+                alert(statusMessage); // Show the alert with the status message
+            }
+
+
+            // // Retrieve and display recruiter profile
+            // function loadRecruiterProfile() {
+            //     const storedProfile = localStorage.getItem('recruiterProfile');
+            //     if (storedProfile) {
+            //         const recruiter = JSON.parse(storedProfile);
+            //         document.getElementById('recruiter-name').textContent = `Name: ${recruiter.name}`;
+            //         document.getElementById('recruiter-email').textContent = `Email: ${recruiter.email}`;
+            //         document.getElementById('recruiter-phone').textContent = `Phone: ${recruiter.phone}`;
+            //     }
+            // }
+            // // Function to display all companies
+            // function displayAllCompanies() {
+            //     const companiesList = document.getElementById('companies-list'); // Use the correct ID
+            //     companiesList.innerHTML = ''; // Clear existing content
+
+            //     const companies = JSON.parse(localStorage.getItem('companies')) || [];
+
+            //     companies.forEach((company, index) => {
+            //         const companyItem = document.createElement('li'); // Create a list item for each company
+            //         companyItem.className = 'company-item';
+            //         companyItem.innerHTML = `
+            //     <h4>${company.name}</h4>
+            //     <p><strong>Description:</strong> ${company.description}</p>
+            //     <p><strong>Location:</strong> ${company.location}</p>
+            //     <p><strong>Website:</strong> <a href="${company.website}" target="_blank">${company.website}</a></p>
+
+            // `;
+            //         companiesList.appendChild(companyItem); // Append the new list item to the list
+            //     });
+            // }
+
+
+        };  
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hire Hub - Create Company</title>
+  <link rel="stylesheet" href="styles1.css">
+  <style>
+    /* Primary Colors */
+:root {
+  --primary-color: #6a38c2;
+  --primary-color-dark: #6132b4;
+  --text-dark: #262626;
+  --text-light: #737373;
+  --extra-light: #e5e5e5;
+  --white: #ffffff;
+  --max-width: 1200px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--extra-light); /* Apply the background color globally */
+  padding: 20px;
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--extra-light);
+  color: var(--text-dark);
+  padding: 15px 30px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  max-width: var(--max-width);
+  margin-inline: auto;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color); /* Use primary color */
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbar-links a {
+  color: var(--text-dark);
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  background-color: var(--primary-color-dark); /* Use primary dark color */
+  color: var(--white);
+}
+
+/* Container Styles */
+.container {
+  background-color: var(--white); /* White background for content container */
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: var(--max-width);
+  margin-inline: auto;
+}
+
+/* Header Styles */
+h1.logo {
+  font-size: 2rem;
+  color: var(--primary-color); /* Use primary color for logo */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1.logo .red {
+  color: var(--primary-color-dark); /* Darker primary color for emphasis */
+}
+
+/* Content Section */
+.content {
+  text-align: center;
+}
+
+.content h2 {
+  font-size: 1.75rem;
+  color: var(--text-dark); /* Text dark for heading */
+  margin-bottom: 10px;
+}
+
+.content p {
+  color: var(--text-light); /* Text light for paragraph */
+  margin-bottom: 20px;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  font-size: 1rem;
+  color: var(--text-dark); /* Text dark for labels */
+  margin-bottom: 5px;
+}
+
+input[type="text"] {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  border: 1px solid var(--primary-color-dark); /* Primary dark border */
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+/* Button Group Styles */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background-color: var(--primary-color-dark); /* Primary dark background */
+  color: var(--white);
+}
+
+.btn-cancel:hover {
+  background-color: var(--primary-color); /* Lighter primary on hover */
+}
+
+.btn-continue {
+  background-color: var(--primary-color); /* Primary color for continue button */
+  color: var(--white);
+}
+
+.btn-continue:hover {
+  background-color: var(--primary-color-dark); /* Darker primary on hover */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .navbar-links {
+    flex-direction: column;
+    width: 100%;
+  }
+  .navbar-links li {
+    margin-left: 0;
+  }
+
+  .content {
+    text-align: left;
+  }
+
+  input[type="text"] {
+    width: 90%;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+}
+.status-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="navbar-brand">Hire Hub</div>
+    <ul class="navbar-links">
+      <li><a href="/companies">Companies</a></li>
+      <li><a href="/job">Jobs</a></li>
+      <li><a href="/recprofile">Profile</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1 class="logo">
+        <span class="black">Hire</span><span class="red">Hub</span>
+      </h1>
+    </header>
+
+    <div class="content">
+      <h2>Your Company Name</h2>
+      <p>What would you like to give your company name? You can change this later.</p>
+  
+      <!-- Hidden span to hold the status message, if present -->
+      <span id="status-message" style="display:none;">{{ status }}</span>
+  
+      <!-- Form for creating a company -->
+      <form id="create-company-form" action="/createcompany" method="post">
+          <label for="company-name">Company Name:</label><br>
+          <input type="text" id="company-name" placeholder="JobHunt, Microsoft etc." name="compname" required><br><br>
+          <div class="btn-group">
+              <button type="button" class="btn-cancel" onclick="window.location.href='/companies'">Cancel</button>
+              <button type="submit" class="btn-continue">Continue</button> <!-- Continue Button -->
+          </div>
+      </form>
+  </div>
+  
+  </div>
+
+  <script>
+    // // Listen for the form submission
+    // document.getElementById('create-company-form').addEventListener('submit', function(event) {
+    //     event.preventDefault(); // Prevent the default form submission
+
+    //     // Get the entered company name
+    //     const companyName = document.getElementById('company-name').value;
+
+    //     // Store the company name in localStorage temporarily
+    //     localStorage.setItem('tempCompanyName', companyName);
+
+    //     // Redirect to setup.html
+    //     window.location.href = '/setup';
+    // });
+    window.onload = function () {
+      var statusMessage = document.getElementById('status-message').textContent;
+
+      if (statusMessage.trim()) { // Ensure it's not empty or whitespace
+        alert(statusMessage); // Show the alert with the status message
+      }
+    };
+</script>
+
+</body>
+</html>

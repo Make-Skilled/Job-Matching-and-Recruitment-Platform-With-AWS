@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobHunt Admin Dashboard</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-color-dark: #0056b3;
+            --extra-light: #e9f0fb;
+            --text-dark: #343a40;
+            --white: #fff;
+            --max-width: 1200px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--extra-light);
+            color: var(--text-dark);
+            padding: 15px 30px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            max-width: var(--max-width);
+            margin-inline: auto;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .navbar-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .navbar-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            background-color: var(--primary-color-dark);
+            color: var(--white);
+        }
+
+        .container {
+            padding: 20px;
+            max-width: var(--max-width);
+            margin-inline: auto;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .search-input {
+            padding: 10px;
+            width: 250px;
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            color: var(--text-dark);
+        }
+
+        .new-job-btn {
+            padding: 10px 15px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .new-job-btn:hover {
+            background-color: var(--primary-color-dark);
+        }
+
+        .job-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .job-table th,
+        .job-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .job-table th {
+            background-color: var(--extra-light);
+            color: var(--text-dark);
+        }
+
+        .job-table td {
+            color: var(--text-dark);
+        }
+
+        .action-btn {
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .dropdown a:hover {
+            background-color: var(--extra-light);
+        }
+
+        .more-btn {
+            cursor: pointer;
+            font-size: 24px;
+            display: inline-block;
+            padding: 5px;
+            border-radius: 50%;
+            background-color: var(--extra-light);
+            color: var(--text-dark);
+            transition: background-color 0.3s ease;
+        }
+
+        .more-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Additional table styles */
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .job-table th,
+            .job-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">Hire Hub</div>
+        <ul class="navbar-links">
+            <li><a href="/companies">Companies</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="/recprofile">Profile</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="actions">
+            <input type="text" class="search-input" placeholder="Filter by company name & role">
+            <a href="/newjobs" style="text-decoration:none; ">
+                <button type="button">New Job</button>
+            </a>
+        </div>
+
+        <table class="job-table" id="jobTable">
+            <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Role</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td>{{i['company']}}</td>
+                    <td>{{i['title']}}</td>
+                    <td>{{i['date']}}</td>
+                    <td> <a href="/newjobs?job_id={{ i['job_id'] }}"><button>Edit</button></a> <a href="/application"><button>Application</button></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+<script>
+    //     function newJob() {
+    //     window.location.href = "/newjobs";  // Redirects to the newjobs.html page
+    // }
+</script>
+</body>
+
+</html>

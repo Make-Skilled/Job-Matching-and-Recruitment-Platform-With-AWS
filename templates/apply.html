@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Posting</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .job-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .job-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .job-meta span {
+            background-color: #e0e7ff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #4f46e5;
+        }
+
+        .salary {
+            color: red;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin: 20px 0 10px;
+            color: #333;
+        }
+
+        .job-details {
+            margin-bottom: 30px;
+        }
+
+        .job-details p {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .apply-btn {
+            background-color: #4f46e5;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            float: right;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .apply-btn:hover {
+            background-color: #4338ca;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            .job-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .apply-btn {
+                width: 100%;
+                margin-top: 15px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="job-container">
+        <div class="job">
+            <!-- Apply Button in HTML -->
+            <form id="applyForm" action="/appliedjob" method="post">
+                <input type="hidden" id="jobTitle" value="{{x['title']}}" name="title">
+                <input type="hidden" id="company" value="{{x['company']}}" name="company">
+                <input type="hidden" id="company" value="{{x['username']}}" name="jobpostedname">
+                <input type="submit" class="apply-btn" id="applyBtn" value="Apply">
+            </form>
+        </div>
+
+        <h1 id="companyName">{{x['com']}}</h1>
+        <div class="job-meta">
+            <span class="positions">{{x['no_of_positions']}} Positions</span>
+            <span class="job-type">{{x['job_type']}}</span>
+            <span class="salary">{{x['salary']}} LPA</span>
+        </div>
+
+        <h2>Job Description</h2>
+        <div class="job-details">
+            <p><strong>Role: </strong> <span>{{x['title']}}</span></p>
+            <p><strong>Location: </strong>{{x['location']}}</p>
+            <p><strong>Description: </strong>{{x['description']}}</p>
+            <p><strong>Experience: </strong>{{x['experience_level']}} year</p>
+            <p><strong>Salary: </strong>{{x['salary']}} LPA</p>
+            <p><strong>Total Applicants: </strong>{{x['no_of_positions']}}</p>
+            <p><strong>Posted Date: </strong> 2024-10-14</p>
+        </div>
+        
+        <script>
+    // document.getElementById('applyBtn').addEventListener('click', function () {
+    //     // Assuming jobTitle and company elements exist and contain values
+    //     const jobTitle = document.getElementById('jobTitle').value;
+    //     const company = document.getElementById('company').value;
+
+    //     // Confirm if the user wants to apply for the job
+    //     const userConfirmed = confirm(`Are you sure you want to apply for the ${jobTitle} position at ${company}?`);
+
+    //     if (userConfirmed) {
+    //         // Send the form data as JSON using fetch
+    //         fetch('/apply_job1', {  // POST request to the Flask endpoint
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({
+    //                 job_title: jobTitle,
+    //                 company: company
+    //             })
+    //         })
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 return response.json();  // Parse JSON response from the server
+    //             } else {
+    //                 throw new Error('Error applying for the job');
+    //             }
+    //         })
+    //         .then(data => {
+    //             alert('Application successful');
+    //             const applyBtn = document.getElementById('applyBtn');
+    //             applyBtn.textContent = "Applied";  // Change button text to "Applied"
+    //             applyBtn.disabled = true;  // Disable the button to prevent multiple submissions
+    //         })
+    //         .catch(error => {
+    //             console.error('Error:', error);  // Log the error to the console
+    //             alert('Failed to apply for the job.');  // Notify the user of failure
+    //         });
+    //     }
+    // });
+        </script>
+
+</body>
+
+</html>
