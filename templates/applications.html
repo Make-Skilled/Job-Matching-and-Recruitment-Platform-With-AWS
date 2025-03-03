@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Applications</title>
+    <style>
+        /* Primary Colors */
+        :root {
+            --primary-color: #007bff;
+            --primary-color-dark: #0056b3;
+            --extra-light: #e9f0fb;
+            --text-dark: #343a40;
+            --white: #fff;
+            --max-width: 1200px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .applications-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .application-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .application-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .application-title {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        .application-status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .status-pending {
+            background-color: #ffeeba;
+            color: #856404;
+        }
+
+        .status-accepted {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .application-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            color: var(--text-dark);
+        }
+
+        .resume-link {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .resume-link:hover {
+            text-decoration: underline;
+        }
+
+        .status-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .status-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .accept-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .reject-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .status-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">Hire Hub</div>
+        <ul class="navbar-links">
+            <li><a href="/jobs">Jobs</a></li>
+            <li><a href="/recprofile">Profile</a></li>
+        </ul>
+    </nav>
+
+    <div class="applications-container">
+        <h1>Job Applications</h1>
+        
+        {% if applications %}
+            {% for application in applications %}
+            <div class="application-card">
+                <div class="application-header">
+                    <h2 class="application-title">{{ application.title }}</h2>
+                    <span class="application-status status-{{ application.status.lower() }}">
+                        {{ application.status }}
+                    </span>
+                </div>
+                
+                <div class="application-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Applicant Name</span>
+                        <span class="detail-value">{{ application.username }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Email</span>
+                        <span class="detail-value">{{ application.email }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Phone</span>
+                        <span class="detail-value">{{ application.number }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Applied Date</span>
+                        <span class="detail-value">{{ application.applied_date }}</span>
+                    </div>
+                    {% if application.resume %}
+                    <div class="detail-item">
+                        <span class="detail-label">Resume</span>
+                        <a href="{{ application.resume }}" class="resume-link" target="_blank">View Resume</a>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% if application.status == "Pending" %}
+                <div class="status-buttons">
+                    <button class="status-btn accept-btn" onclick="updateStatus('{{ application._id }}', 'Accepted')">
+                        Accept
+                    </button>
+                    <button class="status-btn reject-btn" onclick="updateStatus('{{ application._id }}', 'Rejected')">
+                        Reject
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No applications found.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        function updateStatus(applicationId, status) {
+            fetch('/status_update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'application_id': applicationId,
+                    'status': status
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    alert('Status updated successfully!');
+                    location.reload();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while updating the status');
+            });
+        }
+    </script>
+</body>
+</html>

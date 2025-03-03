@@ -497,8 +497,8 @@
             </div>
         </div>
         <ul class="nav__links" id="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="#job">Jobs</a></li>
+            <!-- <li><a href="/">Home</a></li> -->
+            <!-- <li><a href="#job">Jobs</a></li> -->
             <div class="profile-menu">
                 <img src="profile.jpg" alt="Profile" id="profile-icon" class="profile-icon" onclick="toggleDropdown()">
                 <div class="dropdown" id="dropdown-menu">
@@ -522,7 +522,7 @@
                 </p>
                 <div class="job__grid">
                     {% for i in data %}
-                    <a href="/viewdetails?id={{ i['_id'] }}" class="job__card"> <!-- Make the entire card clickable -->
+                    <div class="job__card">
                         <div class="job_card_header">
                             <img src="{{ i['company_logo'] }}" alt="job" />
                             <div>
@@ -538,7 +538,12 @@
                             <span>{{ i['job_type'] }}</span>
                             <span>{{ i['salary'] }}</span>
                         </div>
-                    </a> <!-- Close the anchor tag here -->
+                        <button class="btn" onclick='applyForJob({
+                            title: "{{ i['title'] }}",
+                            company: "{{ i['company'] }}",
+                            jobpostedname: "{{ i['username'] }}"
+                        })'>Apply Now</button>
+                    </div>
                     {% endfor %}
                 </div>
                 
@@ -566,6 +571,16 @@
                     // Additional actions can be performed here if necessary
                 });
             }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            if (error) {
+                alert(error);
+                // Remove the error parameter from URL
+                urlParams.delete('error');
+                const newUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
+                window.history.replaceState({}, '', newUrl);
+            }
         });
         // toogle drop down
         function toggleDropdown() {
@@ -585,7 +600,7 @@
         window.onclick = function (event) {
             if (!event.target.matches('#profile-icon')) {
                 const dropdowns = document.getElementsByClassName("dropdown");
-                for (let i = 0; i < dropdowns.length; i++) {
+                for (let i = 0; i <dropdowns.length; i++) {
                     const openDropdown = dropdowns[i];
                     if (openDropdown.style.display === 'block') {
                         openDropdown.style.display = 'none';
@@ -599,6 +614,28 @@
             window.location.href = '/profile'; // Change this to your actual profile page URL
         }
 
+        function applyForJob(jobData) {
+            const formData = new FormData();
+            formData.append('title', jobData.title);
+            formData.append('company', jobData.company);
+            formData.append('jobpostedname', jobData.jobpostedname);
+
+            // Submit the form directly to handle the redirect
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/appliedjob';
+
+            for (const [key, value] of formData.entries()) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = value;
+                form.appendChild(input);
+            }
+
+            document.body.appendChild(form);
+            form.submit();
+        }
     </script>
 </body>
 

@@ -508,7 +508,6 @@
             </div>
         </div>
         <ul class="nav__links" id="nav-links">
-            <li><a href="/">Home</a></li>
             <li><a href="/job">Jobs</a></li>
 
 
@@ -525,7 +524,6 @@
     <main>
         <div class="profile-card">
             <div class="profile-header">
-                <img src="profile.jpg" alt="Profile">
                 <div class="profile-info">
                     <h2 id="name">{{data['username']}}</h2>
                     <p id="bio">Experienced: <span id="bio-value">{{data['bio']}}</span></p>
@@ -556,7 +554,7 @@
                             {% for job in applied_jobs %}
                             <tr>
                                 <td>{{job.title}}</td>  <!-- Display job title -->
-                                <td>{{job.companyname}}</td>     <!-- Display company name -->
+                                <td>{{job.company}}</td>     <!-- Display company name -->
                                 <td>{{job.status }}</td>      <!-- Display application status -->
                             </tr>
                             {% endfor %}
@@ -669,6 +667,18 @@
             });
         }
 
+        // Success message handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            if (message) {
+                alert(message);
+                // Remove the message parameter from URL
+                urlParams.delete('message');
+                const newUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
+                window.history.replaceState({}, '', newUrl);
+            }
+        });
     </script>
 </body>
 

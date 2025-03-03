@@ -1,333 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hire Hub - Company Setup</title>
-  <link rel="stylesheet" href="styles1.css">
-  <style>
-    /* Primary Colors */
-    :root {
-      --primary-color: #6a38c2;
-      --primary-color-dark: #6132b4;
-      --text-dark: #262626;
-      --text-light: #737373;
-      --extra-light: #e5e5e5;
-      --white: #ffffff;
-      --max-width: 1200px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hire Hub - Company Setup</title>
+    <style>
+        :root {
+            --primary-color: #6a38c2;
+            --primary-color-dark: #6132b4;
+            --text-dark: #262626;
+            --text-light: #737373;
+            --extra-light: #e5e5e5;
+            --white: #ffffff;
+            --max-width: 1200px;
+        }
 
-    * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
 
-    body {
-      font-family: "Poppins", sans-serif;
-      background-color: var(--extra-light);
-      padding: 20px;
-    }
+        body {
+            background-color: var(--extra-light);
+            min-height: 100vh;
+            padding: 2rem;
+        }
 
-    /* Navbar Styles */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: var(--extra-light);
-      color: var(--text-dark);
-      padding: 15px 30px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      max-width: var(--max-width);
-      margin-inline: auto;
-    }
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
 
-    .navbar-brand {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--primary-color);
-    }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-    .navbar-links {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
+        .header h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
 
-    .navbar-links a {
-      color: var(--text-dark);
-      text-decoration: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
+        .company-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-    .navbar-links a:hover {
-      background-color: var(--primary-color-dark);
-      color: var(--white);
-    }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
 
-    /* Container Styles */
-    .container {
-      background-color: var(--white);
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-width: var(--max-width);
-      margin-inline: auto;
-    }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
 
-    /* Header Styles */
-    h1.logo {
-      font-size: 2rem;
-      color: var(--primary-color);
-      text-align: center;
-      margin-bottom: 20px;
-    }
+        input, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--extra-light);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
 
-    h1.logo .red {
-      color: var(--primary-color-dark);
-    }
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
 
-    /* Content Section */
-    .content {
-      text-align: center;
-    }
+        .btn {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            width: 100%;
+            transition: background 0.3s;
+        }
 
-    .content h2 {
-      font-size: 1.75rem;
-      color: var(--text-dark);
-      margin-bottom: 10px;
-    }
+        .btn:hover {
+            background: var(--primary-color-dark);
+        }
 
-    .content p {
-      color: var(--text-light);
-      margin-bottom: 20px;
-    }
+        .status-message {
+            text-align: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+        }
 
-    /* Form Styles */
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
 
-    label {
-      font-size: 1rem;
-      color: var(--text-dark);
-      margin-bottom: 5px;
-      text-align: left;
-      width: 100%;
-      max-width: 500px;
-    }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
 
-    input[type="text"], input[type="file"] {
-      width: 100%;
-      max-width: 500px;
-      padding: 10px;
-      border: 1px solid var(--primary-color-dark);
-      border-radius: 5px;
-      margin-bottom: 20px;
-      font-size: 1rem;
-    }
+        .companies-list {
+            margin-top: 2rem;
+            border-top: 1px solid var(--extra-light);
+            padding-top: 2rem;
+        }
 
-    input[type="text"]:focus {
-      border-color: var(--primary-color);
-    }
+        .companies-list h2 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
 
-    /* Button Group Styles */
-    .btn-group {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
+        .company-card {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--extra-light);
+        }
 
-    button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
+        .company-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
 
-    button[type="button"] {
-      background-color: var(--primary-color-dark);
-      color: var(--white);
-    }
+        .nav-links {
+            text-align: center;
+            margin-top: 2rem;
+        }
 
-    button[type="button"]:hover {
-      background-color: var(--primary-color);
-    }
+        .nav-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
 
-    .btn-update {
-      background-color: var(--primary-color);
-      color: var(--white);
-    }
-
-    .btn-update:hover {
-      background-color: var(--primary-color-dark);
-    }
-
-    /* Responsive Design for Smaller Screens */
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .navbar-links {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .navbar-links li {
-        margin-left: 0;
-      }
-
-      .content {
-        text-align: left;
-      }
-
-      input[type="text"], input[type="file"] {
-        width: 90%;
-      }
-
-      .btn-group {
-        flex-direction: column;
-      }
-    }
-  </style>
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="navbar-brand">Hire Hub</div>
-    <ul class="navbar-links">
-      <li><a href="/companies">Companies</a></li>
-      <li><a href="/job">Jobs</a></li>
-      <li><a href="/recprofile">Profile</a></li>
-    </ul>
-  </nav>
-
-  <div class="container">
-    <header>
-      <h1 class="logo">
-        <span class="black">Hire</span><span class="red">Hub</span>
-      </h1>
-    </header>
-
-    <div class="content">
-      <h2>Company Setup</h2>
-      
-      <!-- Hidden span to hold the status message, if present -->
-      <span id="status-message" style="display:none;">{{ status }}</span>
-    
-      <form id="company-form" action="/createcompany" method="post">
-        <label for="company-name">Company Name</label>
-        <input type="text" id="company-name" placeholder="Enter company name" name="company_name" value="{{ data['companyname'] if data else excom['companyname'] if excom else '' }}"  required>
-    
-        <label for="description">Description</label>
-        <input type="text" id="description" placeholder="Enter company description" name="description" value="{{ excom['description'] if excom else '' }}" required>
-    
-        <label for="website">Website</label>
-        <input type="text" id="website" placeholder="Enter company website" name="website" value="{{ excom['website'] if excom else '' }}" required>
-    
-        <label for="location">Location</label>
-        <input type="text" id="location" placeholder="Enter company location" name="location"  value="{{ excom['location'] if excom else '' }}" required>
-    
-        <label for="logo">Logo</label>
-        <input type="text" id="logo" name="image" placeholder="Provide your company logo link" value="{{ excom['company_logo'] if excom else '' }}" required>
-    
-        <div class="btn-group">
-          <button type="button" onclick="window.history.back()">Back</button>
-          <button type="submit" class="btn-update">Update</button>
+    <div class="container">
+        <div class="header">
+            <h1>Company Setup</h1>
+            <p>Create or manage your company profile</p>
         </div>
-      </form>
+
+        {% if status %}
+        <div class="status-message {% if 'error' in status.lower() %}error{% else %}success{% endif %}">
+            {{ status }}
+        </div>
+        {% endif %}
+
+        <form class="company-form" action="/createcompany" method="POST">
+            <div class="form-group">
+                <label for="company_name">Company Name*</label>
+                <input type="text" id="company_name" name="company_name" value="{{ data['companyname'] if data else excom['companyname'] if excom else '' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Company Description*</label>
+                <textarea id="description" name="description" required>{{ excom['description'] if excom else '' }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="website">Company Website*</label>
+                <input type="url" id="website" name="website" value="{{ excom['website'] if excom else '' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location*</label>
+                <input type="text" id="location" name="location" value="{{ excom['location'] if excom else '' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Company Logo URL</label>
+                <input type="url" id="image" name="image" value="{{ excom['company_logo'] if excom else '' }}" placeholder="https://example.com/logo.png">
+            </div>
+
+            <button type="submit" class="btn">Update Company</button>
+            <button type="button" onclick="window.history.back()">Back</button>
+        </form>
+
+        {% if companies %}
+        <div class="companies-list">
+            <h2>Your Companies</h2>
+            {% for company in companies %}
+            <div class="company-card">
+                <h3>{{ company.companyname }}</h3>
+                <p>{{ company.description }}</p>
+                <p>Location: {{ company.location }}</p>
+                <p>Website: <a href="{{ company.website }}" target="_blank">{{ company.website }}</a></p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="nav-links">
+            <a href="/recprofile">Back to Profile</a>
+            <a href="/newjobs">Post a Job</a>
+        </div>
     </div>
-    
-    <script>
-      window.onload = function () {
-        var statusMessageElement = document.getElementById('status-message');
-        var statusMessage = statusMessageElement ? statusMessageElement.textContent.trim() : "";
-    
-        if (statusMessage) { // Ensure it's not empty or whitespace
-          alert(statusMessage); // Show the alert with the status message
-        }
-      };
-    </script>
-  <!-- <script>
-    // Load the company name and other fields when the page loads
-    window.onload = function() {
-      const tempCompanyName = localStorage.getItem('tempCompanyName');
-    
-      // Check if it's a new company (from create.html)
-      if (tempCompanyName) {
-        document.getElementById('company-name').value = tempCompanyName; // Set temp company name
-        document.getElementById('description').value = ''; // Leave empty
-        document.getElementById('website').value = ''; // Leave empty
-        document.getElementById('location').value = ''; // Leave empty
-        localStorage.removeItem('companyName'); // Ensure companyName isn't stored yet
-      } else {
-        // It's an edit scenario, fill the fields with existing company data
-        const editingCompany = JSON.parse(localStorage.getItem('editingCompany'));
-        if (editingCompany) {
-          document.getElementById('company-name').value = editingCompany.name;
-          document.getElementById('description').value = editingCompany.description;
-          document.getElementById('website').value = editingCompany.website;
-          document.getElementById('location').value = editingCompany.location;
-        }
-      }
-    };
-  
-    // Capture form submission
-    document.getElementById('company-form').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent the form from refreshing the page
-    
-      // Get values from the form
-      const name = document.getElementById('company-name').value;
-      const description = document.getElementById('description').value;
-      const website = document.getElementById('website').value;
-      const location = document.getElementById('location').value;
-  
-      // Store the company name after form submission
-      localStorage.setItem('companyName', name);
-    
-      // Remove tempCompanyName once companyName is stored
-      localStorage.removeItem('tempCompanyName');
-    
-      // Create a new company object
-      const newCompany = {
-        name,
-        description,
-        website,
-        location,
-      };
-    
-      // Retrieve existing companies from localStorage or create a new array
-      const companies = JSON.parse(localStorage.getItem('companies')) || [];
-      const editingIndex = companies.findIndex(company => company.name === name);
-      
-      if (editingIndex !== -1) {
-        // Update the existing company
-        companies[editingIndex] = newCompany;
-      } else {
-        // Add new company if not found
-        companies.push(newCompany);
-      }
-  
-      localStorage.setItem('companies', JSON.stringify(companies));
-    
-      // Reset form fields
-      document.getElementById('company-form').reset(); // Reset the form
-  
-      // Redirect after saving
-      window.location.href = '/companies'; // Redirect after saving
-    });
-  </script>
-   -->
-  
 </body>
 </html>

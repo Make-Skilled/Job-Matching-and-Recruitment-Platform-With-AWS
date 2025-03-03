@@ -202,10 +202,27 @@
         <!-- Recruiter Details -->
         <div class="profile-section">
             <h2>Profile</h2>
-            <div class="profile-details">
+            <div class="profile-info">
+                {% if data %}
                 <p id="recruiter-name">Name: {{data['username']}}</p>
                 <p id="recruiter-email">Email: {{data['email']}}</p>
-                <p id="recruiter-phone">Phone: {{data['number']}}</p>
+                {% endif %}
+                
+                {% if company %}
+                <div class="company-info">
+                    <h3>Company Information</h3>
+                    <p>Company Name: {{company['companyname']}}</p>
+                    <p>Description: {{company['description']}}</p>
+                    <p>Website: {{company['website']}}</p>
+                    <p>Location: {{company['location']}}</p>
+                </div>
+                {% endif %}
+
+                {% if status %}
+                <div class="status-message">
+                    {{ status }}
+                </div>
+                {% endif %}
             </div>
             <button id="edit-profile">Edit Profile</button>
         </div>

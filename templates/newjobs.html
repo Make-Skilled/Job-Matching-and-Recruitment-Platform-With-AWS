@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JobHunt - Create Job</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>HireHub - Post a Job</title>
     <style>
-        /* Primary Colors */
         :root {
             --primary-color: #6a38c2;
             --primary-color-dark: #6132b4;
@@ -22,290 +19,274 @@
             padding: 0;
             margin: 0;
             box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
         }
 
         body {
-            font-family: "Poppins", sans-serif;
             background-color: var(--extra-light);
-            padding: 20px;
-        }
-
-        /* Navbar Styles */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--white);
-            color: var(--text-dark);
-            padding: 15px 30px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            max-width: var(--max-width);
-            margin-inline: auto;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .navbar-links {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .navbar-links a {
-            color: var(--text-dark);
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .navbar-links a:hover {
-            background-color: var(--primary-color-dark);
-            color: var(--white);
-        }
-
-        /* Responsive Design for Smaller Screens */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .navbar-links {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .navbar-links li {
-                margin-left: 0;
-            }
+            min-height: 100vh;
+            padding: 2rem;
         }
 
         .container {
-            background-color: var(--white);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 600px;
-            margin: 20px auto;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
-        h1 {
+        .header {
             text-align: center;
-            color: var(--text-dark);
+            margin-bottom: 2rem;
         }
 
-        h1 span {
+        .header h1 {
             color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-form {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .form-group {
-            display: flex;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
         }
 
-        .form-group label {
+        label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 0.5rem;
             color: var(--text-dark);
-            flex: 1 0 100%;
+            font-weight: 500;
         }
 
-        .form-group input,
-        .form-group select {
-            flex: 1;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-right: 10px;
-            height: 36px;
-        }
-
-        .form-group input:last-child,
-        .form-group select:last-child {
-            margin-right: 0;
-        }
-
-        .form-group .half-width {
-            flex: 1 0 48%;
-        }
-
-        button {
+        input, textarea, select {
             width: 100%;
-            padding: 10px;
-            background-color: var(--primary-color);
-            color: var(--white);
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+            padding: 0.75rem;
+            border: 1px solid var(--extra-light);
+            border-radius: 5px;
+            font-size: 1rem;
         }
 
-        button:hover {
-            background-color: var(--primary-color-dark);
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--primary-color-dark);
+        }
+
+        .status-message {
+            text-align: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .jobs-list {
+            margin-top: 2rem;
+            border-top: 1px solid var(--extra-light);
+            padding-top: 2rem;
+        }
+
+        .jobs-list h2 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .job-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--extra-light);
+        }
+
+        .job-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .job-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .no-company-message {
+            text-align: center;
+            padding: 2rem;
+            background: #fff3cd;
+            color: #856404;
+            border-radius: 5px;
+            margin-bottom: 2rem;
         }
     </style>
 </head>
-
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="navbar-brand">Hire Hub</div>
-        <ul class="navbar-links">
-            <li><a href="/companies">Companies</a></li>
-            <li><a href="/job">Jobs</a></li>
-            <li><a href="/recprofile">Profile</a></li>
-        </ul>
-    </nav>
-
-    <div>
-        <p>{{ message }}</p>
-    </div>
-
     <div class="container">
-        <h1>Job<span>Hunt</span></h1>
-        <form id="jobForm" action="/postjobs" method="post"> <!-- Change action to your applyjobs route -->
-            <input type="hidden" name="job_id" value="{{ job['_id'] if job else '' }}">
+        <div class="header">
+            <h1>Post a New Job</h1>
+            <p>Create a job posting for your company</p>
+        </div>
 
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" value="{{ job['title'] if job else '' }}" required
-                    class="half-width">
-                <input type="text" id="location" name="location" value="{{ job['location'] if job else '' }}" required
-                    class="half-width" placeholder="Location">
-            </div>
+        {% if status %}
+        <div class="status-message {% if 'error' in status.lower() %}error{% else %}success{% endif %}">
+            {{ status }}
+        </div>
+        {% endif %}
 
+        {% if not companies %}
+        <div class="no-company-message">
+            <h3>No Company Profile Found</h3>
+            <p>You need to create a company profile before posting jobs.</p>
+            <a href="/setup" class="btn" style="display: inline-block; width: auto; margin-top: 1rem;">Create Company Profile</a>
+        </div>
+        {% else %}
+        <form class="job-form" action="/postjobs" method="POST">
             <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" id="description" name="description" value="{{ job['description'] if job else '' }}"
-                    required class="half-width">
-                <input type="text" id="jobType" name="jobType" value="{{ job['job_type'] if job else '' }}" required
-                    class="half-width" placeholder="Type">
-            </div>
-
-            <div class="form-group">
-                <label for="requirements">Requirements</label>
-                <input type="text" id="requirements" name="requirements"
-                    value="{{ job['requirements'] if job else '' }}" required class="half-width">
-                <input type="number" id="salary" name="salary" value="{{ job['salary'] if job else '' }}" required
-                    class="half-width" placeholder="Salary">
-            </div>
-
-            <div class="form-group">
-                <label for="experienceLevel">Experience Level (in years)</label>
-                <input type="number" id="experienceLevel" name="experienceLevel"
-                    value="{{ job['experience_level'] if job else '' }}" required class="half-width">
-                <input type="number" id="noOfPosition" name="noOfPosition"
-                    value="{{ job['no_of_positions'] if job else '' }}" required class="half-width"
-                    placeholder="Number of Positions">
-            </div>
-
-            <div class="form-group">
-                <label for="company">Select a Company</label>
-                <select id="company" name="company" required class="half-width">
-                    <option value="" disabled {% if not job %} selected {% endif %}>Select a Company</option>
+                <label for="company">Select Company*</label>
+                <select id="company" name="company" required>
+                    <option value="">Select a company</option>
                     {% for company in companies %}
-                        <option value="{{ company['company_name'] }}"
-                            {% if job and job['company'] == company['company_name'] %} selected {% endif %}>
-                            {{ company['company_name'] }}
-                        </option>
+                    <option value="{{ company.companyname }}">{{ company.companyname }}</option>
                     {% endfor %}
-                    {% if not companies %}
-                        <option value="">No companies available</option>
-                    {% endif %}
                 </select>
-                <input type="date" id="date" name="date" value="{{ job['date'] if job else '' }}" class="half-width" placeholder="Select today's date" required>
             </div>
-            
+
             <div class="form-group">
-                <label for="companylogo">Company Logo</label>
-                <input type="text" id="companylogo" name="logo" value="{{ job['company_logo'] if job else '' }}"  class="half-width" placeholder="Provide your company logo" required>
+                <label for="title">Job Title*</label>
+                <input type="text" id="title" name="title" required>
             </div>
 
-            <button type="submit">Apply for Job</button> <!-- Change button text as needed -->
+            <div class="form-group">
+                <label for="location">Location*</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+
+            <div class="form-group">
+                <label for="jobType">Job Type*</label>
+                <select id="jobType" name="jobType" required>
+                    <option value="">Select job type</option>
+                    <option value="Full-time">Full-time</option>
+                    <option value="Part-time">Part-time</option>
+                    <option value="Contract">Contract</option>
+                    <option value="Internship">Internship</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Job Description*</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="requirements">Requirements*</label>
+                <textarea id="requirements" name="requirements" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="salary">Salary (per year)*</label>
+                <input type="number" id="salary" name="salary" required>
+            </div>
+
+            <div class="form-group">
+                <label for="experienceLevel">Experience Level (in years)*</label>
+                <input type="number" id="experienceLevel" name="experienceLevel" required>
+            </div>
+
+            <div class="form-group">
+                <label for="noOfPosition">Number of Positions*</label>
+                <input type="number" id="noOfPosition" name="noOfPosition" required>
+            </div>
+
+            <button type="submit" class="btn">Post Job</button>
         </form>
+        {% endif %}
+
+        {% if jobs %}
+        <div class="jobs-list">
+            <h2>Your Posted Jobs</h2>
+            {% for job in jobs %}
+            <div class="job-card">
+                <h3>{{ job.title }}</h3>
+                <p>{{ job.company }}</p>
+                <div class="job-details">
+                    <div class="job-detail">
+                        <span>Location:</span>
+                        <span>{{ job.location }}</span>
+                    </div>
+                    <div class="job-detail">
+                        <span>Type:</span>
+                        <span>{{ job.job_type }}</span>
+                    </div>
+                    <div class="job-detail">
+                        <span>Salary:</span>
+                        <span>${{ job.salary }}/year</span>
+                    </div>
+                    <div class="job-detail">
+                        <span>Posted:</span>
+                        <span>{{ job.date }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="nav-links">
+            <a href="/recprofile">Back to Profile</a>
+            <a href="/setup">Manage Companies</a>
+        </div>
     </div>
-
-    <script>
-        // Example company data (this should come from your actual company collection)
-        // const companies = [
-        //     { name: 'Microsoft' },
-        //     { name: 'Wipro' },
-        //     { name: 'TCS' }
-        // ];
-
-        // // Store the company data in local storage
-        // localStorage.setItem('companies', JSON.stringify(companies));
-
-        // // Function to populate the company dropdown
-        // function populateCompanyDropdown() {
-        //     const companySelect = document.getElementById('company');
-        //     companySelect.innerHTML = '<option value="">Select a Company</option>'; // Reset the dropdown
-
-        //     // Retrieve companies from localStorage
-        //     const companies = JSON.parse(localStorage.getItem('companies')) || [];
-
-        //     companies.forEach(company => {
-        //         const option = document.createElement('option');
-        //         option.value = company.name; // Ensure 'name' matches your company object structure
-        //         option.textContent = company.name;
-        //         companySelect.appendChild(option);
-        //     });
-        // }
-
-        // // Handle form submission
-        // document.getElementById('jobForm').addEventListener('submit', function (event) {
-        //     event.preventDefault(); // Prevent the default form submission
-
-        //     // Get form values
-        //     const jobData = {
-        //         title: document.getElementById('title').value,
-        //         location: document.getElementById('location').value,
-        //         description: document.getElementById('description').value,
-        //         jobType: document.getElementById('jobType').value,
-        //         requirements: document.getElementById('requirements').value,
-        //         salary: document.getElementById('salary').value,
-        //         experienceLevel: document.getElementById('experienceLevel').value,
-        //         noOfPosition: document.getElementById('noOfPosition').value,
-        //         company: document.getElementById('company').value,
-        //         company_logo:document.getElementById('companylogo').value
-        //         // Add any additional fields as needed
-        //     };
-
-        //     // Send the jobData to your Flask server
-        //     fetch('/apply_job', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(jobData)
-        //     })
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             console.log(data); // Log the response from the server
-        //             alert(data.message); // Show success message
-        //         })
-        //         .catch(error => {
-        //             console.error('Error:', error);
-        //             alert('Failed to apply for the job.');
-        //         });
-        // });
-
-        // // Call this function on page load
-        // window.onload = function () {
-        //     populateCompanyDropdown(); // Populate dropdown with companies
-        // };
-    </script>
-
-
 </body>
-
 </html>

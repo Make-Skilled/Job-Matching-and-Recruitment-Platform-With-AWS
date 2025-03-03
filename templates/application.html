@@ -176,7 +176,7 @@
                         <th>Company</th>
                         <th>Title</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -185,28 +185,10 @@
                         <td>{{ application.username}}</td>
                         <td>{{ application.email}}</td>
                         <td>{{ application.resume}}</td>
-                        <td>{{ application.companyname}}</td>
+                        <td>{{ application.company}}</td>
                         <td>{{ application.title}}</td>
                         <td class="status">{{ application.status}}</td>
-                        <td>
-                            <div class="action-menu">
-                                <button onclick="toggleMenu(event)">...</button>
-                                <div class="dropdown" style="display: none;"> <!-- Initially hidden dropdown -->
-                                    <form action="/status_update" method="post">
-                                        <input type="hidden" name="username" value="{{application.username}}">
-                                        <input type="hidden" name="companyname" value="{{application.companyname}}">
-                                        <input type="hidden" name="title" value="{{application.title}}">
-                                        <!-- Dropdown menu for status -->
-                                        <select name="status" id="status" required>
-                                            <option value="" disabled selected>Select status</option>
-                                            <option value="Accepted">Accepted</option>
-                                            <option value="Rejected">Rejected</option>
-                                        </select>
-                                        <input type="submit" value="Submit">
-                                    </form>  
-                                </div>
-                            </div>
-                        </td>
+                        
                     </tr>
                     {% endfor %}
                 </tbody>
