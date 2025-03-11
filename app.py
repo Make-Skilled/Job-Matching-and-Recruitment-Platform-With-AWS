@@ -4,7 +4,7 @@ from datetime import datetime
 from bson.objectid import ObjectId
 
 
-cluster=MongoClient("127.0.0.1:27017")
+cluster=MongoClient("mongodb+srv://anushaglory12:123456789Anusha@job-portal.0bmkr.mongodb.net/")
 db=cluster['hirehub']
 users=db['users']
 companies=db['companies']
@@ -531,4 +531,4 @@ def viewdet():
 
 
 if __name__=="__main__":
-    app.run(port=4000,debug=True)
+    app.run(port=4000,debug=True,host='0.0.0.0')
